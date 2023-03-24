@@ -1,6 +1,6 @@
 # celery-test
 
-oc new-app --name=celery-test https://github.com/torvicvasil1993/celery-test.git --context-dir=celery-test --strategy=docker
+oc new-app --name=celery-workers https://github.com/torvicvasil1993/celery-test.git --strategy=docker
 
-oc scale dc celery-test --replicas=3
+oc scale deployment celery-workers --replicas=3
 
