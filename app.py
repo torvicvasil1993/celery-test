@@ -7,12 +7,12 @@ app = Celery('myapp',
 
 app.conf.beat_schedule = {
     'add-every-30-seconds': {
-        'task': 'mytask',
+        'task': 'app.mytask',
         'schedule': 30.0,
         'args': (16, 16)
     },
     'add-every-morning': {
-        'task': 'mytask',
+        'task': 'app.mytask',
         'schedule': crontab(hour=7, minute=30),
         'args': (4, 4)
     },
