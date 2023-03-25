@@ -33,7 +33,7 @@ objects:
           app: celerydb
           deploymentconfig: celerydb
       spec:
-        containers:celeryapp
+        containers:
         - env:
           - name: MYSQL_DATABASE
             value: celerydb
