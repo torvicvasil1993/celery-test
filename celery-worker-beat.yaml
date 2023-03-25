@@ -1,3 +1,10 @@
+kind: ImageStream
+apiVersion: v1
+metadata:
+  annotations:
+    description: Keeps track of changes in the application image
+  name: celery-worker-beat
+---
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
@@ -12,11 +19,10 @@ spec:
       kind: ImageStreamTag
       name: celery-worker-beat:latest
   strategy:
-    dockerStrategy:
-      from:
-        kind: DockerImage
-        name: python:3.9
-      dockerfilePath: Dockerfile
+      type: Docker
+      dockerStrategy:
+        dockerfilePath: Dockerfile
+      postCommit: {}
 #  triggers:
 #    - type: GitHub
 #      github:
