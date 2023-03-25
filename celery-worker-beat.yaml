@@ -1,7 +1,7 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: myapp-build
+  name: celery-worker-beat-build
 spec:
   source:
     git:
@@ -10,7 +10,7 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: myapp:latest
+      name: celery-worker-beat:latest
   strategy:
     dockerStrategy:
       from:
@@ -26,20 +26,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: celery-worker-beat
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: celery-worker-beat
   replicas: 1
   template:
     metadata:
       labels:
-        app: myapp
+        app: celery-worker-beat
     spec:
       containers:
-        - name: myapp
-          image: myapp:latest
+        - name: celery-worker-beat
+          image: celery-worker-beat:latest
           env:
             - name: CELERY_BROKER_URL
               value: amqp://guest:guest@rabbitmq:5672//
@@ -51,10 +51,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: celery-worker-beat
 spec:
   selector:
-    app: myapp
+    app: celery-worker-beat
   ports:
     - name: http
       port: 8080
