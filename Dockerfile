@@ -1,11 +1,15 @@
-FROM python:3.8
+FROM python:3.8-slim-buster
 
-ENV PYTHONUNBUFFERED 1
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r /app/requirements.txt
+WORKDIR /app
 
-COPY . /app/
-WORKDIR /app/
+COPY requirements.txt .
 
-CMD ["celery", "-A", "tasks", "worker", "--loglevel=info"]
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["celery", "-A", "app", "worker", "-B", "--loglevel=info"]
