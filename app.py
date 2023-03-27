@@ -6,6 +6,8 @@ app = Celery('myapp',
              broker='amqp://guest:guest@rabbitmq:5672//',
              backend='rpc://')
 
+app.conf.timezone = 'America/Sao_Paulo'
+
 app.conf.beat_schedule = {
     'add-every-30-seconds': {
         'task': 'app.mytask',
