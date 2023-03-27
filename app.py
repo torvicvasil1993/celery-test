@@ -1,5 +1,6 @@
 from celery import Celery
 from celery.schedules import crontab
+import datetime
 
 app = Celery('myapp',
              broker='amqp://guest:guest@rabbitmq:5672//',
