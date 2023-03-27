@@ -20,5 +20,7 @@ app.conf.beat_schedule = {
 
 @app.task
 def mytask(x, y):
+    now = datetime.datetime.now()
+    print(f"The current time in Brazil/Sao_Paulo is {now}")
     return x + y
     

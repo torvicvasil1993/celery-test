@@ -86,6 +86,8 @@ objects:
             value: celerydb
           - name: DATABASE_USER
             value: ${APP_NAME}
+          - name: CELERY_TIMEZONE
+            value: 'America/Sao_Paulo'
           imagePullPolicy: Always
           name: ${APP_NAME}
           ports:
@@ -154,4 +156,4 @@ parameters:
   displayName: Webhook Secret
   description: Secret for webhooks
   generate: expression
-  from: '[a-zA-Z0-9]{40}'  
+  from: '[a-zA-Z0-9]{40}' 

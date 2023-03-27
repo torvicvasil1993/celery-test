@@ -16,4 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+ENV CELERY_TIMEZONE 'America/Sao_Paulo'
+
 CMD ["celery", "-A", "app", "worker", "-B", "--loglevel=info"]
